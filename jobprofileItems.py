@@ -23,12 +23,12 @@ alljobs = soup.find_all('div', class_='jobsearch-SerpJobCard unifiedRow row resu
 for job in alljobs:
     try:
         indLink = alljobs[0].find('div', class_='title').a.get('href')
-        viewPaylod = {
+        viewPayload = {
             'jk': alljobs[0].get('data-jk'),
             'from': 'serp',
             'vjs': indLink.split('=')[-1].strip()
         }
-        viewJob = requests.get('https://www.indeed.com/viewjob', params=viewPaylod)
+        viewJob = requests.get('https://www.indeed.com/viewjob', params=viewPayload)
         jobtitle = job.find('div', class_='title').text.strip()
         joblocation = job.find('div', class_='location').text.strip()
         jobsummary = job.find('div', class_='summary').text.strip()
